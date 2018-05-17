@@ -1,9 +1,23 @@
 function rank() {
-    $.post("demo_test.asp", function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
+    showLoader();
+    $.post('controller/rank.php', function(data){
+        const pageRankData = data['pageRank'];
+        const hitsData = data['hits'];
+        displayResult(pageRankData, 'page-rank-result');
+        displayResult(hitsData, 'hits-result');
+        hideLoader();
+        $('#results').removeClass('hiddendiv');
     });
-    $.post("demo_test.asp", function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-    });
-    $('#results').removeClass('hiddendiv');
+}
+
+function displayResult(data, id) {
+    $('#' + id).html(data);
+}
+
+function showLoader() {
+    $('#loader').removeClass('hiddendiv');
+}
+
+function hideLoader() {
+    $('#loader').addClass('hiddendiv');
 }
