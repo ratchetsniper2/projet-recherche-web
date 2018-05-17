@@ -13,8 +13,10 @@ function pageRankScript($filesLinksData) {
     foreach ($filesLinksData as $page => $links) {
         $ranking[$page]['score'] = BASE_SCORE;
     }
-    pageRankScriptWorker($filesLinksData, $ranking);
-    return $ranking;
+    for ($i = 0; $i < 100; $i++) {
+        pageRankScriptWorker($filesLinksData, $ranking);
+    }
+    return $filesLinksData;
 }
 
 function pageRankScriptWorker($filesLinksData, $ranking) {
@@ -24,7 +26,7 @@ function pageRankScriptWorker($filesLinksData, $ranking) {
 }
 
 function calculateScore($page, $filesLinksData, $ranking) {
-    $outLinkNumber = count($filesLinksData[$page]);
+    $outLinkNumber = count($filesLinksData[$page]['linkTo']);
     $sum = 0;
     foreach ($filesLinksData as $page => $links) {
         if (in_array($page, $links['linkedFrom'])) {
