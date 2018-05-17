@@ -4,11 +4,39 @@
         <meta charset="UTF-8">
         <title>Projet recherche web</title>
         <link href="view/css/style.css" type="text/css" rel="stylesheet">
+        <link href="view/css/materialize.min.css" type="text/css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-        blblblblbllb
+        <div class="container">
+            <div class="row valign-wrapper button-wrapper">
+                <button class="waves-effect waves-light btn-large pulse margin-auto" onclick="rank();"><i class="material-icons right">equalizer</i>Rank !</button>
+            </div>
+            <div class="row hiddendiv" id="results">
+                <div class="col s6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">PageRank</span>
+                            <div id="page-rank-result">
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Hits</span>
+                            <div id="hits-result">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script type="text/javascript" src="view/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="view/js/materialize.min.js"></script>
         <script src="view/js/script.js"></script>
     </body>
 </html>
