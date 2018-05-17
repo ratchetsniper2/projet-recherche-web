@@ -7,14 +7,11 @@
 function getFilesLinksData() {
     $documentFolder = "../model/documents";
 
-    $filesLink["linkTo"] = [];
-    $filesLink["linkedFrom"] = [];
-
     $files = array_diff(scandir($documentFolder), array('..', '.'));
 
     foreach($files as $file) {
-        $filesLink["linkTo"][$file] = [];
-        $filesLink["linkedFrom"][$file] = [];
+        $filesLink[$file]["linkTo"] = [];
+        $filesLink[$file]["linkedFrom"] = [];
     }
 
     foreach($files as $file) {
@@ -24,12 +21,12 @@ function getFilesLinksData() {
 
         foreach ($matches[2] as $linkFile) {
             if ($linkFile !== $file) {
-                if (array_search($linkFile, $filesLink["linkTo"][$file]) === false) {
-                    $filesLink["linkTo"][$file][] = $linkFile;
+                if (!in_array($linkFile, $filesLink[$file]["linkTo"])) {
+                    $filesLink[$file]["linkTo"][] = $linkFile;
                 }
 
-                if (array_search($file, $filesLink["linkedFrom"][$linkFile]) === false) {
-                    $filesLink["linkedFrom"][$linkFile][] = $file;
+                if (!in_array($file, $filesLink[$linkFile]["linkedFrom"])) {
+                    $filesLink[$linkFile]["linkedFrom"][] = $file;
                 }
             }
         }
@@ -44,5 +41,5 @@ function getFilesLinksData() {
  * @return array
  */
 function hitsScript($filesLinksData) {
-    return [];
+    return $filesLinksData;
 }
