@@ -7,6 +7,8 @@ function rank() {
         $("#page-rank-result").empty();
         $("#hits-result").empty();
 
+        let precision = 1000;
+
         // pageRank
         $.each(data.pageRank, function(pageName, data) {
             $("#page-rank-result").append(
@@ -15,7 +17,7 @@ function rank() {
                         pageName +
                     "</td>" +
                     "<td>" +
-                        data +
+                        Math.round(data.score*precision)/precision +
                     "</td>" +
                 "</tr>"
             );
@@ -29,10 +31,10 @@ function rank() {
                         pageName +
                     "</td>" +
                     "<td>" +
-                        data.authority +
+                        Math.round(data.authority*precision)/precision +
                     "</td>" +
                     "<td>" +
-                        data.hub +
+                            Math.round(data.hub*precision)/precision +
                     "</td>" +
                 "</tr>"
             );
