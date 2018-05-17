@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>Projet recherche web</title>
-        <link href="view/css/style.css" type="text/css" rel="stylesheet">
-        <link href="view/css/materialize.min.css" type="text/css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="view/css/materialize.min.css" type="text/css" rel="stylesheet">
+        <link href="view/css/style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <div class="container height100 valign-wrapper">
@@ -31,11 +31,11 @@
                         <div class="card-content">
                             <span class="card-title teal-text">PageRank</span>
                             <div>
-                                <table class="highlight">
+                                <table class="highlight fixed-header" id="page-rank-table">
                                     <thead>
                                     <tr>
-                                        <th>Page</th>
-                                        <th>Score</th>
+                                        <th width="75%">Page</th>
+                                        <th width="500">Score</th>
                                     </tr>
                                     </thead>
                                     <tbody id="page-rank-result">
@@ -50,13 +50,12 @@
                     <div class="card hoverable">
                         <div class="card-content">
                             <span class="card-title teal-text">Hits</span>
-                            <div>
-                                <table class="highlight">
+                                <table class="highlight fixed-header" id="hits-table">
                                     <thead>
                                         <tr>
-                                            <th>Page</th>
-                                            <th>Authority</th>
-                                            <th>Hub</th>
+                                            <th width="50%">Page</th>
+                                            <th width="25%">Authority</th>
+                                            <th width="500">Hub</th>
                                         </tr>
                                     </thead>
                                     <tbody id="hits-result">

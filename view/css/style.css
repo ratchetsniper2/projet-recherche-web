@@ -2,14 +2,31 @@
     margin: auto;
 }
 
-.height100 {
-    height: 100vh;
-}
-
 .width100 {
     width: 100%;
 }
 
+.height100 {
+    height: 100vh;
+}
+
 #results {
     display: none;
+}
+
+.fixed-header tbody{
+    display:block;
+    overflow:auto;
+    max-height: 80vh;
+    width:100%;
+}
+
+.fixed-header thead tr {
+    display:block;
+    box-sizing: content-box;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
 }

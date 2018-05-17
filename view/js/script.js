@@ -25,10 +25,10 @@ function displayPageRank(pageRank) {
     $.each(pageRank, function (pageName, data) {
         $("#page-rank-result").append(
             "<tr>" +
-            "<td>" +
+            "<td width='75%'>" +
             pageName +
             "</td>" +
-            "<td>" +
+            "<td width='500'>" +
             formatFloat(data.score) +
             "</td>" +
             "</tr>"
@@ -40,13 +40,13 @@ function displayHits(hits) {
     $.each(hits, function (pageName, data) {
         $("#hits-result").append(
             "<tr>" +
-            "<td>" +
+            "<td width='50%'>" +
             pageName +
             "</td>" +
-            "<td>" +
+            "<td width='25%'>" +
             formatFloat(data.authority) +
             "</td>" +
-            "<td>" +
+            "<td width='500'>" +
             formatFloat(data.hub) +
             "</td>" +
             "</tr>"
