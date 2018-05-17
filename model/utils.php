@@ -2,7 +2,7 @@
 
 
 /**
- * @return array ["linkTo" => [], "linkedFrom" => []]
+ * @return array [pageName => ["linkTo" => [], "linkedFrom" => []]]
  */
 function getFilesLinksData() {
     $documentFolder = "../model/documents";
@@ -41,5 +41,52 @@ function getFilesLinksData() {
  * @return array
  */
 function hitsScript($filesLinksData) {
-    return $filesLinksData;
+    $result = [];
+
+    foreach ($filesLinksData as $pageName => $data) {
+        $result[$pageName]["authority"] = 1;
+        $result[$pageName]["hub"] = 1;
+    }
+
+    for ($i = 0 ; $i < 100 ; $i++) {
+        // update autority
+        $norm = 0;
+        foreach ($filesLinksData as $pageName => $data) {
+            $authority = 0;
+
+            foreach ($data["linkedFrom"] as $linkedFromPageName) {
+                $authority += $result[$linkedFromPageName]["hub"];
+            }
+
+            $result[$pageName]["authority"] = $authority;
+            $norm += $authority**2;
+        }
+
+        $norm = $norm ? sqrt($norm) : 1;
+
+        foreach ($filesLinksData as $pageName => $data) {
+            $result[$pageName]["authority"] = $result[$pageName]["authority"] / $norm;
+        }
+
+        // update hub
+        $norm = 0;
+        foreach ($filesLinksData as $pageName => $data) {
+            $hub = 0;
+
+            foreach ($data["linkTo"] as $linkToPageName) {
+                $hub += $result[$linkToPageName]["authority"];
+            }
+
+            $result[$pageName]["hub"] = $hub;
+            $norm += $hub**2;
+        }
+
+        $norm = $norm ? sqrt($norm) : 1;
+
+        foreach ($filesLinksData as $pageName => $data) {
+            $result[$pageName]["hub"] = $result[$pageName]["hub"] / $norm;
+        }
+    }
+
+    return $result;
 }
