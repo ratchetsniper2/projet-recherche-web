@@ -1,0 +1,1 @@
+sujet :  Implémenter l’algorithme PageRank et l’algorithme HITS : comparer ces 2 méthodes sur un petit graphe de documents hyper-liés (réaliste) de votre choix, en mettant en évidence leurs  avantages et inconvénients.
