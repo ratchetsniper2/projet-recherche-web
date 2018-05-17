@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * @return array [fileName, [linkFileName, linkFileName]]
  */
@@ -17,15 +18,6 @@ function getFilesLinksData() {
     }
 
     return $filesLink;
-}
-
-/**
- * @param $filesLinksData array
- *
- * @return array
- */
-function pageRankScript($filesLinksData) {
-    return [];
 }
 
 /**

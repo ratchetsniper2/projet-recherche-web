@@ -1,6 +1,7 @@
 <?php
 
 require_once("../model/utils.php");
+require_once("../model/pageRank.php");
 
 $data = [];
 $filesLinksData = getFilesLinksData();
