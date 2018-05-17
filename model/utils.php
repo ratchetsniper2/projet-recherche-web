@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * @return array ["linkTo" => [], "linkedFrom" => []]
  */
@@ -35,15 +36,6 @@ function getFilesLinksData() {
     }
 
     return $filesLink;
-}
-
-/**
- * @param $filesLinksData array
- *
- * @return array
- */
-function pageRankScript($filesLinksData) {
-    return [];
 }
 
 /**
