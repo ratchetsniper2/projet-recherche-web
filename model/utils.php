@@ -48,7 +48,7 @@ function hitsScript($filesLinksData) {
         $result[$pageName]["hub"] = 1;
     }
 
-    for ($i = 0 ; $i < 100 ; $i++) {
+    for ($i = 0 ; $i < 10 ; $i++) {
         // update autority
         $norm = 0;
         foreach ($filesLinksData as $pageName => $data) {
