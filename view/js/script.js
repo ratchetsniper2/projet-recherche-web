@@ -1,28 +1,46 @@
 function rank() {
     $('#results').addClass('hiddendiv');
     showLoader();
-    $.post('controller/rank.php', function(data){
-        const pageRankData = data['pageRank'];
-        const hitsData = data['hits'];
-        displayResult(pageRankData, 'page-rank-result');
-        displayResult(hitsData, 'hits-result');
+    $.post('controller/rank.php', function(data) {
+        data = JSON.parse(data);
+
+        $("#page-rank-result").empty();
+        $("#hits-result").empty();
+
+        // pageRank
+        $.each(data.pageRank, function(pageName, data) {
+            $("#page-rank-result").append(
+                "<tr>" +
+                    "<td>" +
+                        pageName +
+                    "</td>" +
+                    "<td>" +
+                        data +
+                    "</td>" +
+                "</tr>"
+            );
+        });
+
+        // hits
+        $.each(data.hits, function(pageName, data) {
+            $("#hits-result").append(
+                "<tr>" +
+                    "<td>" +
+                        pageName +
+                    "</td>" +
+                    "<td>" +
+                        data.authority +
+                    "</td>" +
+                    "<td>" +
+                        data.hub +
+                    "</td>" +
+                "</tr>"
+            );
+        });
+
         hideLoader();
         $('#results').removeClass('hiddendiv');
     });
-}
-
-function displayResult(data, id) {
-    for (let i = 0; i < data.length; i++) {
-        let rank = $('<td></td>');
-        rank.html(i);
-        let page = $('<td></td>');
-        page.html(data[i].page);
-        let score = $('<td></td>');
-        score.html(data[i].score);
-        let row = $('<tr></tr>');
-        row.appendChild(rank).appendChild(page).appendChild(row);
-        $('#' + id).appendChild(row);
-    }
 }
 
 function showLoader() {
