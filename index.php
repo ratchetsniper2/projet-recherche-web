@@ -1,5 +1,3 @@
 <?php
 
-require_once("controller/controller.php");
-
-home();
+require_once("view/home.html");
