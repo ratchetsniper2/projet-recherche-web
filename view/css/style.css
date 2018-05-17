@@ -1,7 +1,15 @@
-.button-wrapper {
-    height: 20vh;
-}
-
 .margin-auto {
     margin: auto;
+}
+
+.height100 {
+    height: 100vh;
+}
+
+.width100 {
+    width: 100%;
+}
+
+#results {
+    display: none;
 }

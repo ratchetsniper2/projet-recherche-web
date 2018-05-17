@@ -8,9 +8,9 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-        <div class="container">
-            <div class="row valign-wrapper button-wrapper">
-                <button class="waves-effect waves-light btn-large pulse margin-auto" onclick="rank();"><i class="material-icons right">equalizer</i>Rank !</button>
+        <div class="container height100 valign-wrapper">
+            <div class="row button-wrapper" id="rank-button-wrapper">
+                <button class="waves-effect waves-light btn-large pulse margin-auto scale-transition" id="rank-button" onclick="rank();"><i class="material-icons right">equalizer</i>Rank !</button>
             </div>
             <div class="row hiddendiv center-align" id="loader">
                 <div class="preloader-wrapper big active">
@@ -25,13 +25,13 @@
                     </div>
                 </div>
             </div>
-            <div class="row hiddendiv" id="results">
+            <div class="row width100" id="results">
                 <div class="col s6">
-                    <div class="card">
+                    <div class="card hoverable">
                         <div class="card-content">
-                            <span class="card-title">PageRank</span>
+                            <span class="card-title teal-text">PageRank</span>
                             <div>
-                                <table>
+                                <table class="highlight">
                                     <thead>
                                     <tr>
                                         <th>Page</th>
@@ -47,11 +47,11 @@
                     </div>
                 </div>
                 <div class="col s6">
-                    <div class="card">
+                    <div class="card hoverable">
                         <div class="card-content">
-                            <span class="card-title">Hits</span>
+                            <span class="card-title teal-text">Hits</span>
                             <div>
-                                <table>
+                                <table class="highlight">
                                     <thead>
                                         <tr>
                                             <th>Page</th>
