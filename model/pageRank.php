@@ -13,7 +13,7 @@ function pageRankScript($filesLinksData) {
     foreach ($filesLinksData as $page => $links) {
         $ranking[$page]['score'] = BASE_SCORE;
     }
-    for ($i = 0; $i < 100; $i++) {
+    for ($i = 0; $i < 10; $i++) {
         $ranking = pageRankScriptWorker($filesLinksData, $ranking);
     }
     uasort($ranking, function ($a, $b) {
