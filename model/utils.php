@@ -87,8 +87,16 @@ function hitsScript($filesLinksData) {
         foreach ($filesLinksData as $pageName => $data) {
             $result[$pageName]["hub"] = -1/($result[$pageName]["hub"]+1)+1;
             // $result[$pageName]["hub"] = $result[$pageName]["hub"] / $norm;
+            // -1/(x +1) +1
         }
     }
+
+    uasort($result, function ($a, $b) {
+        if ($a == $b) {
+            return 0;
+        }
+        return ($a["authority"] < $b["authority"]) ? 1 : -1;
+    });
 
     return $result;
 }
