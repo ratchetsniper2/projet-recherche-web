@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @return array [fileName, [fileName, fileName]]
+ * @return array [fileName, [linkFileName, linkFileName]]
  */
-function getDocuments() {
+function getFilesLinksData() {
     $documentFolder = "../model/documents";
 
     $filesLink = [];
@@ -17,4 +17,22 @@ function getDocuments() {
     }
 
     return $filesLink;
+}
+
+/**
+ * @param $filesLinksData array
+ *
+ * @return array
+ */
+function pageRankScript($filesLinksData) {
+    return [];
+}
+
+/**
+ * @param $filesLinksData array
+ *
+ * @return array
+ */
+function hitsScript($filesLinksData) {
+    return [];
 }
