@@ -11,17 +11,19 @@
         <div class="container height100 valign-wrapper">
             <div class="row button-wrapper" id="rank-button-wrapper">
                 <div class="section">
-                    <button class="waves-effect waves-light btn-large pulse margin-auto scale-transition" id="rank-button" onclick="rank();"><i class="material-icons right">equalizer</i>Rank !</button>
+                    <button class="waves-effect waves-light btn btn-xxl pulse margin-auto scale-transition" id="rank-button" onclick="rank();"><i class="material-icons right">equalizer</i>Rank !</button>
                 </div>
-                <div class="divider"></div>
-                <div class="section">
-                    <div class="switch center-align">
-                        <label>
-                            Pages
-                            <input type="checkbox" id="mode">
-                            <span class="lever teal"></span>
-                            Graphe
-                        </label>
+                <div id="mode-wrapper">
+                    <div class="divider"></div>
+                    <div class="section">
+                        <div class="switch center-align">
+                            <label>
+                                Pages
+                                <input type="checkbox" id="mode">
+                                <span class="lever teal"></span>
+                                Graphe
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,9 +81,17 @@
                     </div>
                 </div>
                 <div class="fixed-action-btn" style="bottom: 100px; right: 100px;">
-                    <a class="btn-floating btn-large waves-effect waves-light teal" href="javascript:window.location.href=window.location.href">
+                    <a id="refresh" class="btn-floating btn-large waves-effect waves-light teal pulse scale-transition scale-out" href="javascript:window.location.href = window.location.href">
                         <i class="material-icons">refresh</i>
                     </a>
+                </div>
+                <div class="tap-target-wrapper">
+                    <div class="tap-target teal" data-target="refresh">
+                        <div class="tap-target-content white-text">
+                            <h5>Refresh</h5>
+                            <p>Relancez l'algorithme de Ranking !</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
