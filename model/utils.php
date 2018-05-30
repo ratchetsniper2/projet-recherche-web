@@ -48,7 +48,7 @@ function hitsScript($filesLinksData) {
         $result[$pageName]["hub"] = 1;
     }
 
-    for ($i = 0 ; $i < 10 ; $i++) {
+    for ($i = 0 ; $i < 5 ; $i++) {
         // update autority
         $norm = 0;
         foreach ($filesLinksData as $pageName => $data) {
@@ -65,8 +65,7 @@ function hitsScript($filesLinksData) {
         $norm = $norm ? sqrt($norm) : 1;
 
         foreach ($filesLinksData as $pageName => $data) {
-            $result[$pageName]["authority"] = -1/($result[$pageName]["authority"]+1)+1;
-            // $result[$pageName]["authority"] = $result[$pageName]["authority"] / $norm;
+            $result[$pageName]["autorhity"] = $result[$pageName]["authority"] / $norm;
         }
 
         // update hub
@@ -85,9 +84,7 @@ function hitsScript($filesLinksData) {
         $norm = $norm ? sqrt($norm) : 1;
 
         foreach ($filesLinksData as $pageName => $data) {
-            $result[$pageName]["hub"] = -1/($result[$pageName]["hub"]+1)+1;
-            // $result[$pageName]["hub"] = $result[$pageName]["hub"] / $norm;
-            // -1/(x +1) +1
+            $result[$pageName]["hub"] = $result[$pageName]["hub"] / $norm;
         }
     }
 
