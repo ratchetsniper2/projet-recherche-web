@@ -37,7 +37,7 @@ function displayPageRank(pageRank) {
         if (loopIndex > nbItems) {
             $("#page-rank-result").append(
                 "<tr>" +
-                "<td width='75%'>" +
+                "<td width='75%' class='pageName'>" +
                 pageName +
                 "</td>" +
                 "<td width='500'>" +
@@ -67,7 +67,7 @@ function displayHits(hits) {
         if (loopIndex > nbItems) {
             $("#hits-result").append(
                 "<tr>" +
-                "<td width='50%'>" +
+                "<td width='50%' class='pageName'>" +
                 pageName +
                 "</td>" +
                 "<td width='25%'>" +

@@ -41,3 +41,17 @@
     font-size: 18px;
     padding: 0 120px;
 }
+
+table {
+    table-layout: fixed;
+}
+
+tr {
+    display: block;
+}
+
+.pageName{
+    max-width: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
