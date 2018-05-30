@@ -10,31 +10,26 @@ function getFilesLinksData($mode) {
     $filesLink = [];
 
     if ($mode) {
-        $content = file_get_contents("../model/documents2/data.txt");
-
+        $lines = explode("\n", file_get_contents("../model/documents2/data.txt"));
         $nodesNames = [];
+        $nodesLinksTemp = [];
+        foreach ($lines as $line) {
+            $data = explode(" ", $line);
 
-        $nodesNamesTemp = explode("n ", $content);
-        $nodesLinksTemp = explode("e ", $nodesNamesTemp[count($nodesNamesTemp) - 1]);
-        unset($nodesNamesTemp[count($nodesNamesTemp) - 1]);
+            if ($data[0] === "n") {
+                $nodesNames[$data[1]] = $data[2];
 
-        foreach ($nodesNamesTemp as $nodeNameTemp) {
-            $data = explode(" ", $nodeNameTemp);
-            $pageNumber = $data[0];
-            $pageName = $data[1];
-
-            $nodesNames[$pageNumber] = $pageName;
-
-            $filesLink[$pageName]["linkTo"] = [];
-            $filesLink[$pageName]["linkedFrom"] = [];
+                $filesLink[$data[2]]["linkTo"] = [];
+                $filesLink[$data[2]]["linkedFrom"] = [];
+            } elseif ($data[0] === "e") {
+                $nodesLinksTemp[$data[1]] = $data[2];
+            }
         }
 
-        foreach ($nodesLinksTemp as $nodeLinkTemp) {
-            $data = explode(" ", $nodeLinkTemp);
-
-            if (array_key_exists($data[0], $nodesNames) && array_key_exists($data[1], $nodesNames)) {
-                $pageName = $nodesNames[$data[0]];
-                $linkName = $nodesNames[$data[1]];
+        foreach ($nodesLinksTemp as $pageNodeNum => $linkNodeNum) {
+            if (array_key_exists($pageNodeNum, $nodesNames) && array_key_exists($linkNodeNum, $nodesNames)) {
+                $pageName = $nodesNames[$pageNodeNum];
+                $linkName = $nodesNames[$linkNodeNum];
 
                 $filesLink[$pageName]["linkTo"][] = $linkName;
                 $filesLink[$linkName]["linkedFrom"][] = $pageName;
