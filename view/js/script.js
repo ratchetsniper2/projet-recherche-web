@@ -2,7 +2,6 @@ function rank() {
     $('#rank-button').addClass('scale-out');
     setTimeout(function(){
         let mode = $('#mode').prop('checked') === true ? 1 : 0;
-        console.log(mode);
         $('#rank-button-wrapper').css('display', 'none');
         showLoader();
         $.post('controller/rank.php?mode=' + mode, function (data) {
@@ -24,9 +23,12 @@ function rank() {
 }
 
 function displayPageRank(pageRank) {
+    let nbItemsAtBegin = 15;
+    let nbItems = $("#page-rank-result").children().length;
+
+    let loopIndex = 1;
     $.each(pageRank, function (pageName, data) {
-        let timeout = $("#page-rank-result").children().length > 15 ? 1000 : 0;
-        let funct = function () {
+        if (loopIndex > nbItems) {
             $("#page-rank-result").append(
                 "<tr>" +
                 "<td width='75%'>" +
@@ -37,20 +39,26 @@ function displayPageRank(pageRank) {
                 "</td>" +
                 "</tr>"
             );
-        };
-
-        if (timeout) {
-            setTimeout(funct, timeout);
-        } else {
-            funct();
         }
+
+        if (loopIndex === nbItemsAtBegin && nbItems < nbItemsAtBegin) {
+            setTimeout(function () {
+                displayPageRank(pageRank)
+            }, 1000);
+            return false;
+        }
+
+        loopIndex ++;
     });
 }
 
 function displayHits(hits) {
+    let nbItemsAtBegin = 15;
+    let nbItems = $("#hits-result").children().length;
+
+    let loopIndex = 1;
     $.each(hits, function (pageName, data) {
-        let timeout = $("#hits-result").children().length > 15 ? 1000 : 0;
-        let funct = function () {
+        if (loopIndex > nbItems) {
             $("#hits-result").append(
                 "<tr>" +
                 "<td width='50%'>" +
@@ -64,13 +72,16 @@ function displayHits(hits) {
                 "</td>" +
                 "</tr>"
             );
-        };
-
-        if (timeout) {
-            setTimeout(funct, timeout);
-        } else {
-            funct();
         }
+
+        if (loopIndex === nbItemsAtBegin && nbItems < nbItemsAtBegin) {
+            setTimeout(function () {
+                displayHits(hits);
+            }, 1000);
+            return false;
+        }
+
+        loopIndex ++;
     });
 }
 
