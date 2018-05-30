@@ -23,7 +23,7 @@ function rank() {
 
 function displayPageRank(pageRank) {
     $.each(pageRank, function (pageName, data) {
-        let timeout = $("#page-rank-result").children().length > 25 ? 1000 : 0;
+        let timeout = $("#page-rank-result").children().length > 15 ? 1000 : 0;
         let funct = function () {
             $("#page-rank-result").append(
                 "<tr>" +
@@ -47,7 +47,7 @@ function displayPageRank(pageRank) {
 
 function displayHits(hits) {
     $.each(hits, function (pageName, data) {
-        let timeout = $("#hits-result").children().length > 25 ? 1000 : 0;
+        let timeout = $("#hits-result").children().length > 15 ? 1000 : 0;
         let funct = function () {
             $("#hits-result").append(
                 "<tr>" +
