@@ -1,9 +1,11 @@
 function rank() {
     $('#rank-button').addClass('scale-out');
     setTimeout(function(){
+        let mode = $('#mode').prop('checked') === true ? 1 : 0;
+        console.log(mode);
         $('#rank-button-wrapper').css('display', 'none');
         showLoader();
-        $.post('controller/rank.php', function (data) {
+        $.post('controller/rank.php?mode=' + mode, function (data) {
             data = JSON.parse(data);
 
             $("#page-rank-result").empty();
