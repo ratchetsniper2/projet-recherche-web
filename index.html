@@ -10,7 +10,20 @@
     <body>
         <div class="container height100 valign-wrapper">
             <div class="row button-wrapper" id="rank-button-wrapper">
-                <button class="waves-effect waves-light btn-large pulse margin-auto scale-transition" id="rank-button" onclick="rank();"><i class="material-icons right">equalizer</i>Rank !</button>
+                <div class="section">
+                    <button class="waves-effect waves-light btn-large pulse margin-auto scale-transition" id="rank-button" onclick="rank();"><i class="material-icons right">equalizer</i>Rank !</button>
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                    <div class="switch center-align">
+                        <label>
+                            Pages
+                            <input type="checkbox" id="mode">
+                            <span class="lever teal"></span>
+                            Graphe
+                        </label>
+                    </div>
+                </div>
             </div>
             <div class="row hiddendiv center-align" id="loader">
                 <div class="preloader-wrapper big active">
@@ -50,25 +63,28 @@
                     <div class="card hoverable">
                         <div class="card-content">
                             <span class="card-title teal-text">Hits</span>
-                                <table class="highlight fixed-header" id="hits-table">
-                                    <thead>
-                                        <tr>
-                                            <th width="50%">Page</th>
-                                            <th width="25%">Authority</th>
-                                            <th width="500">Hub</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="hits-result">
+                            <table class="highlight fixed-header" id="hits-table">
+                                <thead>
+                                    <tr>
+                                        <th width="50%">Page</th>
+                                        <th width="25%">Authority</th>
+                                        <th width="500">Hub</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="hits-result">
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+                <div class="fixed-action-btn" style="bottom: 100px; right: 100px;">
+                    <a class="btn-floating btn-large waves-effect waves-light teal" href="javascript:window.location.href=window.location.href">
+                        <i class="material-icons">refresh</i>
+                    </a>
+                </div>
             </div>
         </div>
-
         <script type="text/javascript" src="view/js/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="view/js/materialize.min.js"></script>
         <script src="view/js/script.js"></script>
