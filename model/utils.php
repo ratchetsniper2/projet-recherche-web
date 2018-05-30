@@ -2,31 +2,69 @@
 
 
 /**
+ * @param $mode int (0 : page / 1 : graphe)
+ *
  * @return array [pageName => ["linkTo" => [], "linkedFrom" => []]]
  */
-function getFilesLinksData() {
-    $documentFolder = "../model/documents";
+function getFilesLinksData($mode) {
+    $filesLink = [];
 
-    $files = array_diff(scandir($documentFolder), array('..', '.'));
+    if ($mode) {
+        $content = file_get_contents("../model/documents2/data.txt");
 
-    foreach($files as $file) {
-        $filesLink[$file]["linkTo"] = [];
-        $filesLink[$file]["linkedFrom"] = [];
-    }
+        $nodesNames = [];
 
-    foreach($files as $file) {
-        $content = file_get_contents($documentFolder . "/" . $file);
+        $nodesNamesTemp = explode("n ", $content);
+        $nodesLinksTemp = explode("e ", $nodesNamesTemp[count($nodesNamesTemp) - 1]);
+        unset($nodesNamesTemp[count($nodesNamesTemp) - 1]);
 
-        preg_match_all('~<a(.*?)href="([^"]+)"(.*?)>~', $content, $matches);
+        foreach ($nodesNamesTemp as $nodeNameTemp) {
+            $data = explode(" ", $nodeNameTemp);
+            $pageNumber = $data[0];
+            $pageName = $data[1];
 
-        foreach ($matches[2] as $linkFile) {
-            if ($linkFile !== $file) {
-                if (!in_array($linkFile, $filesLink[$file]["linkTo"])) {
-                    $filesLink[$file]["linkTo"][] = $linkFile;
-                }
+            $nodesNames[$pageNumber] = $pageName;
 
-                if (!in_array($file, $filesLink[$linkFile]["linkedFrom"])) {
-                    $filesLink[$linkFile]["linkedFrom"][] = $file;
+            $filesLink[$pageName]["linkTo"] = [];
+            $filesLink[$pageName]["linkedFrom"] = [];
+        }
+
+        foreach ($nodesLinksTemp as $nodeLinkTemp) {
+            $data = explode(" ", $nodeLinkTemp);
+
+            if (array_key_exists($data[0], $nodesNames) && array_key_exists($data[1], $nodesNames)) {
+                $pageName = $nodesNames[$data[0]];
+                $linkName = $nodesNames[$data[1]];
+
+                $filesLink[$pageName]["linkTo"][] = $linkName;
+                $filesLink[$linkName]["linkedFrom"][] = $pageName;
+            }
+        }
+
+    } else {
+        $documentFolder = "../model/documents";
+
+        $files = array_diff(scandir($documentFolder), array('..', '.'));
+
+        foreach($files as $file) {
+            $filesLink[$file]["linkTo"] = [];
+            $filesLink[$file]["linkedFrom"] = [];
+        }
+
+        foreach($files as $file) {
+            $content = file_get_contents($documentFolder . "/" . $file);
+
+            preg_match_all('~<a(.*?)href="([^"]+)"(.*?)>~', $content, $matches);
+
+            foreach ($matches[2] as $linkFile) {
+                if ($linkFile !== $file) {
+                    if (!in_array($linkFile, $filesLink[$file]["linkTo"])) {
+                        $filesLink[$file]["linkTo"][] = $linkFile;
+                    }
+
+                    if (!in_array($file, $filesLink[$linkFile]["linkedFrom"])) {
+                        $filesLink[$linkFile]["linkedFrom"][] = $file;
+                    }
                 }
             }
         }
