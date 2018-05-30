@@ -1,5 +1,6 @@
 function rank() {
     $('#rank-button').addClass('scale-out');
+    $('#mode-wrapper').fadeOut(200);
     setTimeout(function(){
         let mode = $('#mode').prop('checked') === true ? 1 : 0;
         $('#rank-button-wrapper').css('display', 'none');
@@ -17,7 +18,12 @@ function rank() {
             displayHits(data.hits);
 
             hideLoader();
-            $('#results').show(1000);
+            $('#results').slideDown(1000, function () {
+                $('#refresh').addClass('scale-in');
+                setTimeout(function() {
+                    $('.tap-target').tapTarget('open');
+                }, 1000);
+            });
         });
     }, 400);
 }
@@ -96,3 +102,7 @@ function showLoader() {
 function hideLoader() {
     $('#loader').addClass('hiddendiv');
 }
+
+$(document).ready(function(){
+    $('.tap-target').tapTarget();
+});
