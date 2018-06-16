@@ -2,6 +2,8 @@
 
 
 /**
+ * Fonction pour récupérer les tableaux de données en fonction de l'entrée
+ *
  * @param $mode int (0 : page / 1 : graphe)
  *
  * @return array [pageName => ["linkTo" => [], "linkedFrom" => []]]
@@ -69,6 +71,8 @@ function getFilesLinksData($mode) {
 }
 
 /**
+ * Script pour la partie HITS
+ *
  * @param $filesLinksData array
  *
  * @return array
@@ -81,7 +85,7 @@ function hitsScript($filesLinksData) {
         $result[$pageName]["hub"] = 1;
     }
 
-    for ($i = 0 ; $i < 5 ; $i++) {
+    for ($i = 0 ; $i < 10 ; $i++) {
         // update autority
         $norm = 0;
         foreach ($filesLinksData as $pageName => $data) {
